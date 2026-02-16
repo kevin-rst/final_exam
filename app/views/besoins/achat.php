@@ -8,7 +8,7 @@
 <body>
     <h1>Acheter un besoin</h1>
 
-    <form action="<?= BASE_URL ?>/besoins/buy" method="post">
+    <form action="<?= BASE_URL ?>/achats/buy" method="post">
         <label for="quantite">Quantité à acheter:</label>
         <input type="number" id="quantite" name="quantite" min="1" required>
 

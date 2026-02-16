@@ -16,7 +16,7 @@ class AchatController
         $this->app = $app;
     }
 
-    public function acheter($id_besoin)
+    public function acheter()
     {
         $pdo = $this->app->db();
 
@@ -24,7 +24,7 @@ class AchatController
 
         $model = new AchatModel($pdo);
         $svc = new AchatService($model);
-        $svc->acheter($id_besoin, $data["quantite"], $pdo);
+        $svc->acheter($data["id_besoin"], $data["quantite"], $pdo);
 
         $this->app->redirect('/');
     }
