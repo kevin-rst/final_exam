@@ -12,7 +12,7 @@ class TypeModel {
     }
 
     public function getAllTypes() {
-        $query = "SELECT * FROM bngrc_type ORDER BY nom";
+        $query = "SELECT * FROM bngrc_type_besoin ORDER BY nom";
         
         $stmt = $this->db->prepare($query);
         $stmt->execute();

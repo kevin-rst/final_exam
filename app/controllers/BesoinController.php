@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use flight\Engine;
+use app\models\VilleModel;
+use app\models\TypeModel;
 
 class BesoinController {
 
@@ -22,7 +24,7 @@ class BesoinController {
         $types = $typeModel->getAllTypes();
 
         $this->app->render('besoins/form.php', [  
-            'cities' => $cities,
+            'villes' => $cities,
             'types' => $types
         ]);
     }

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use flight\Engine;
+use app\models\TypeModel;
 
 class DonController {
 
