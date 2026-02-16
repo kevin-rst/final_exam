@@ -76,3 +76,51 @@ JOIN bngrc_categorie_besoin c ON t.id_categorie = c.id_categorie
 JOIN bngrc_region r ON v.id_region = r.id_region;
 
 
+CREATE OR REPLACE VIEW v_ville_besoins_dons AS
+SELECT
+    v.id_ville,
+    v.nom AS nom_ville,
+    r.nom AS nom_region,
+    t.id_type,
+    t.nom AS nom_type,
+    c.nom AS nom_categorie,
+    COALESCE(SUM(b.quantite), 0) AS quantite_besoin,
+    COALESCE(SUM(d.quantite), 0) AS quantite_don_attribue
+FROM bngrc_ville v
+JOIN bngrc_region r ON v.id_region = r.id_region
+LEFT JOIN bngrc_besoin b ON b.id_ville = v.id_ville
+LEFT JOIN bngrc_type_besoin t ON t.id_type = b.id_type
+LEFT JOIN bngrc_categorie_besoin c ON c.id_categorie = t.id_categorie
+LEFT JOIN bngrc_distribution d ON d.id_ville = v.id_ville AND d.id_type = b.id_type
+GROUP BY
+    v.id_ville,
+    v.nom,
+    r.nom,
+    t.id_type,
+    t.nom,
+    c.nom;
+
+
+CREATE OR REPLACE VIEW v_ville_besoins_dons_details AS
+SELECT
+    v.id_ville,
+    v.nom AS nom_ville,
+    r.nom AS nom_region,
+    b.id_besoin,
+    b.date_saisie,
+    b.quantite AS quantite_besoin,
+    t.id_type,
+    t.nom AS nom_type,
+    c.nom AS nom_categorie,
+    d.id_distribution,
+    d.id_don,
+    d.quantite AS quantite_don_attribue,
+    d.date_distribution
+FROM bngrc_ville v
+JOIN bngrc_region r ON v.id_region = r.id_region
+LEFT JOIN bngrc_besoin b ON b.id_ville = v.id_ville
+LEFT JOIN bngrc_type_besoin t ON t.id_type = b.id_type
+LEFT JOIN bngrc_categorie_besoin c ON c.id_categorie = t.id_categorie
+LEFT JOIN bngrc_distribution d ON d.id_ville = v.id_ville AND d.id_type = b.id_type;
+
+
