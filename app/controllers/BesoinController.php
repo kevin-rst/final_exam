@@ -5,6 +5,7 @@ namespace app\controllers;
 use flight\Engine;
 use app\models\VilleModel;
 use app\models\TypeModel;
+use app\models\BesoinModel;
 
 class BesoinController {
 
@@ -27,5 +28,16 @@ class BesoinController {
             'villes' => $cities,
             'types' => $types
         ]);
+    }
+
+    public function create() {
+        $pdo = $this->app->db();
+
+        $data = $this->app->request()->data;
+
+        $besoinModel = new BesoinModel($pdo);
+        $besoinModel->createBesoin($data);
+
+        $this->app->render('index');
     }
 }

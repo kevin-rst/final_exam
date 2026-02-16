@@ -10,7 +10,7 @@
 <body>
 
     <h2>Saisir les dons a donner aux sinistrés</h2>
-    <form action="<?= BASE_URL ?>/dons/showForm" method="post">
+    <form action="<?= BASE_URL ?>/dons/create" method="post">
         <label for="type">Type du don</label>
         <select id="type" name="type">
             <?php foreach ($types as $value): ?>

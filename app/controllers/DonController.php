@@ -23,4 +23,15 @@ class DonController {
             'types' => $types
         ]);
     }
+
+    public function create() {
+        $pdo = $this->app->db();
+
+        $data = $this->app->request()->data;
+        $donModel = new DonModel($pdo);
+
+        $donModel->createDon($data);
+
+        $this->app->render('index');
+    }
 }

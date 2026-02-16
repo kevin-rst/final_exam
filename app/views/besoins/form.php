@@ -10,7 +10,7 @@
 <body>
 
     <h2>Saisir les besoins</h2>
-    <form action="<?= BASE_URL ?>/besoins/showForm" method="post">
+    <form action="<?= BASE_URL ?>/besoins/create" method="post">
         <label for="ville">Ville:</label>
         <select id="ville" name="ville">
             <?php foreach ($villes as $value): ?>

@@ -21,10 +21,13 @@ $router->group('', function(Router $router) use ($app) {
 
 	$router->group('/besoins', function(Router $router) use ($app) {
 		$router->get('/showForm', [BesoinController::class, 'showForm']);
+		$router->post('/create', [ BesoinController::class, 'create' ]);
 	});
 
 	$router->group('/dons', function(Router $router) use ($app) {
 		$router->get('/showForm', [DonController::class, 'showForm']);
+		$router->post('/create', [ DonController::class, 'create' ]);
+
 	});
 
 }, [ SecurityHeadersMiddleware::class ]);
