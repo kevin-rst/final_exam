@@ -20,8 +20,8 @@ class VilleModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getCityDetail() {
-        $query = "SELECT * FROM v_ville_details ORDER BY nom_ville, nom_type, date_distribution";
+    public function getCityDetails() {
+        $query = "SELECT * FROM v_ville_besoins_dons_details";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute();
