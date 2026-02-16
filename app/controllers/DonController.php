@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use flight\Engine;
 use app\models\TypeModel;
+use app\models\DonModel;
 
 class DonController {
 
