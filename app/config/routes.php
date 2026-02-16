@@ -15,7 +15,9 @@ use flight\net\Router;
 // This wraps all routes in the group with the SecurityHeadersMiddleware
 $router->group('', function(Router $router) use ($app) {
 
-	$router->get('/', [VilleController::class, 'getVilleDetails']);
+	$router->get('/', function() use ($app) {
+		$app->render('index');
+	} );
 
 	$router->group('/besoins', function(Router $router) use ($app) {
 		$router->get('/showForm', [BesoinController::class, 'showForm']);
@@ -26,7 +28,8 @@ $router->group('', function(Router $router) use ($app) {
 		$router->get('/showForm', [DonController::class, 'showForm']);
 		$router->post('/create', [ DonController::class, 'create' ]);
 		$router->get('/dispatch', [ DonController::class, 'dispatch' ]);
-
 	});
+
+	$router->get('/ville/details', [VilleController::class, 'getVilleDetails']);
 
 }, [ SecurityHeadersMiddleware::class ]);

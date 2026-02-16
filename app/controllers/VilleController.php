@@ -24,7 +24,7 @@ class VilleController
         $villeModel = new VilleModel($pdo);
         $details = $villeModel->getCityDetails();
 
-        $this->app->render('index', [
+        $this->app->render('ville/ville', [
             'details' => $details
         ]);
     }
