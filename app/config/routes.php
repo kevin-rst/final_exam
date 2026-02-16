@@ -31,8 +31,8 @@ $router->group('', function(Router $router) use ($app) {
 
 	$router->group('/achats', function(Router $router) use ($app) {
 		$router->post('/buy', [AchatController::class, 'acheter']);
-
 		$router->get('/list', [AchatController::class, 'getAllAchats']);
+		$router->get('/validate/@id', [ AchatController::class, 'validerAchat' ]);
 	});
 	
 

@@ -23,15 +23,16 @@
                             <th>ID Achat</th>
                             <th>Ville</th>
                             <th>Type de besoin</th>
-                            <th>Quantité Demandée</th>
-                            <th>Quantité Achetée</th>
-                            <th>Quantité Restante</th>
+                            <th>Quantité besoin</th>
+                            <th>Quantité restante</th>
+                            <th>Quantité achetée</th>
                             <th>Prix Unitaire</th>
                             <th>Montant Sous-total</th>
                             <th>Frais</th>
                             <th>Montant Total</th>
                             <th>Statut</th>
                             <th>Date Achat</th>
+                            <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,14 +42,15 @@
                                 <td><?= $achat['nom_ville'] ?></td>
                                 <td><?= $achat['nom_type'] ?></td>
                                 <td><?= $achat['quantite'] ?></td>
-                                <td><?= $achat['quantite_achetee'] ?></td>
                                 <td><?= $achat['quantite_restante'] ?></td>
+                                <td><?= $achat['quantite_achetee'] ?></td>
                                 <td><?= $achat['prix_unitaire'] ?></td>
                                 <td><?= $achat['montant_sous_total'] ?></td>
                                 <td><?= $achat['montant_frais'] ?></td>
                                 <td><?= $achat['montant_total'] ?></td>
                                 <td><?= $achat['statut'] ?></td>
                                 <td><?= $achat['date_achat'] ?></td>
+                                <td><a href="<?= BASE_URL ?>/achats/validate/<?= $achat['id_achat'] ?>">Valider</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
