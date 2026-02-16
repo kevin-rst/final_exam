@@ -47,7 +47,7 @@ class BesoinController {
         $besoinModel = new BesoinModel($pdo);
         $details = $besoinModel->getBesoinDetails();
 
-        $this->app->render('besoins/liste.php', [
+        $this->app->render('besoins/list', [
             'besoins' => $details
         ]);
     }
