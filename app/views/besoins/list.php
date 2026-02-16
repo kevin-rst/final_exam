@@ -16,6 +16,7 @@
                     <th>Quantité</th>
                     <th>Quantité restante</th>
                     <th>Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@
                         <td><?= $besoin['quantite'] ?></td>
                         <td><?= $besoin['quantite_restante'] ?></td>
                         <td><?= $besoin['date_saisie'] ?></td>
+                        <td><a href="/besoins/buy/<?= $besoin['id_besoin'] ?>">Acheter</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
