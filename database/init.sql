@@ -67,10 +67,10 @@ SELECT
     d.quantite AS quantite_distribuee,
     r.nom AS nom_region,
     d.date_distribution
-FROM bngrc_distribution d
-JOIN bngrc_ville v ON d.id_ville = v.id_ville
+FROM bngrc_ville v
+LEFT JOIN bngrc_distribution d ON d.id_ville = v.id_ville
 JOIN bngrc_type_besoin t ON d.id_type = t.id_type
-JOIN bngrc_don don ON d.id_don = don.id_don
+LEFT JOIN bngrc_don don ON d.id_don = don.id_don
 JOIN bngrc_categorie_besoin c ON t.id_categorie = c.id_categorie
 JOIN bngrc_region r ON v.id_region = r.id_region;
 
