@@ -15,6 +15,6 @@ $router->group('', function(Router $router) use ($app) {
 
 	$router->get('/', function() {
 		echo "Final exam";
-	})
+	});
 
 }, [ SecurityHeadersMiddleware::class ]);
