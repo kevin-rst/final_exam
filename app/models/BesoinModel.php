@@ -42,4 +42,16 @@ class BesoinModel {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getPrixUnitaireByBesoinId($id_besoin) {
+        $query = "SELECT t.prix_unitaire
+            FROM bngrc_besoin b
+            JOIN bngrc_type_besoin t ON t.id_type = b.id_type
+            WHERE b.id_besoin = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([ $id_besoin ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['prix_unitaire'];
+    }
 }

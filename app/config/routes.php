@@ -26,6 +26,7 @@ $router->group('', function(Router $router) use ($app) {
 		$router->get('/buy/@id', function($id) use ($app) {
 			$app->render('besoins/achat', ['id_besoin' => $id]);
 		});
+		$router->post('/buy', [BesoinController::class, 'acheter']);
 	});
 
 	$router->group('/dons', function(Router $router) use ($app) {
