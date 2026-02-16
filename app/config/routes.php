@@ -22,6 +22,7 @@ $router->group('', function(Router $router) use ($app) {
 	$router->group('/besoins', function(Router $router) use ($app) {
 		$router->get('/showForm', [BesoinController::class, 'showForm']);
 		$router->post('/create', [ BesoinController::class, 'create' ]);
+		$router->get('/list', [ BesoinController::class, 'getBesoinDetails' ]);
 	});
 
 	$router->group('/dons', function(Router $router) use ($app) {

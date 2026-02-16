@@ -21,6 +21,7 @@
         <!-- Liens originaux conservés (en haut) -->
         <div class="quick-links">
             <a href="<?= BASE_URL ?>/besoins/showForm" class="quick-link">Saisir les besoins</a>
+            <a href="<?= BASE_URL ?>/besoins/list" class="quick-link">List des besoins</a>
             <a href="<?= BASE_URL ?>/dons/showForm" class="quick-link">Saisir les dons</a>
             <a href="<?= BASE_URL ?>/dons/dispatch" class="quick-link">Simuler dispatch</a>
             <a href="<?= BASE_URL ?>/ville/details" class="quick-link">Voir les détails des villes</a>
@@ -113,9 +114,9 @@
         <div class="footer-content">
             <span>Simulation urgence - Coordination des dons</span>
             <div class="footer-links">
-                <a href="<?= BASE_URL ?>/besoins/showForm">ETU004079</a>
-                <a href="<?= BASE_URL ?>/dons/showForm">ETU004170</a>
-                <a href="<?= BASE_URL ?>/ville/details">ETU004360</a>
+                <a href="#">ETU004079</a>
+                <a href="#">ETU004170</a>
+                <a href="#">ETU004360</a>
             </div>
         </div>
     </footer>
