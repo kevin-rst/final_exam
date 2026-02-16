@@ -4,12 +4,9 @@ namespace app\controllers;
 
 use flight\Engine;
 use app\models\VilleModel;
-use app\models\TypeModel;
-use app\models\BesoinModel;
 
 class VilleController
 {
-
     protected Engine $app;
 
     public function __construct($app)
