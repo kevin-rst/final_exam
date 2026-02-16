@@ -75,7 +75,7 @@ return [
 		'host' => 'localhost:3306',
 		// 'host' => 'localhost',
 		// 'port' => '5432',
-		'dbname' => 'tpflight',
+		'dbname' => 'bngrc',
 		// 'user' => 'postgres',
 		// 'password' => 'postgres'
 		'user' => 'root',
