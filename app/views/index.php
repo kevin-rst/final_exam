@@ -8,5 +8,6 @@
 <body>
     <a href="<?= BASE_URL ?>/besoins/showForm">Saisir les besoins</a>
     <a href="<?= BASE_URL ?>/dons/showForm">Saisir les dons</a>
+    <a href="<?= BASE_URL ?>/dons/dispatch">Simuler dispatch</a>
 </body>
 </html>

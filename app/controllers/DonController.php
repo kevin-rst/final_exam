@@ -5,6 +5,7 @@ namespace app\controllers;
 use flight\Engine;
 use app\models\TypeModel;
 use app\models\DonModel;
+use app\service\Dispatcher;
 
 class DonController {
 
@@ -32,6 +33,14 @@ class DonController {
         $donModel = new DonModel($pdo);
 
         $donModel->createDon($data);
+
+        $this->app->render('index');
+    }
+
+    public function dispatch() {
+        $pdo = $this->app->db();
+
+        Dispatcher::dispatch($pdo);
 
         $this->app->render('index');
     }

@@ -27,6 +27,7 @@ $router->group('', function(Router $router) use ($app) {
 	$router->group('/dons', function(Router $router) use ($app) {
 		$router->get('/showForm', [DonController::class, 'showForm']);
 		$router->post('/create', [ DonController::class, 'create' ]);
+		$router->get('/dispatch', [ DonController::class, 'dispatch' ]);
 
 	});
 
