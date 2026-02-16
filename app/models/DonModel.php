@@ -33,4 +33,13 @@ class DonModel {
         $stmt = $this->db->prepare($query);
         $stmt->execute([ (int) $est_utilise, $id_don ]);
     }
+
+    public function getByType($type) {
+        $query = "SELECT * FROM bngrc_don WHERE id_type = ? AND est_utilise = FALSE ORDER BY date_don, id_don";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([ $type ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

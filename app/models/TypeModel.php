@@ -20,5 +20,12 @@ class TypeModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getByNom($nom) {
+        $query = "SELECT * FROM bngrc_type_besoin WHERE nom = ?";
 
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([ $nom ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

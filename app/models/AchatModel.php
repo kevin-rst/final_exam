@@ -50,4 +50,20 @@ class AchatModel {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getById($id_achat) {
+        $query = "SELECT * FROM bngrc_achat WHERE id = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$id_achat]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function insertAchatDon($data) {
+        $query = "INSERT INTO bngrc_achat_don (id_achat, id_don, montant_utilise, date_liaison) VALUES (?, ?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        
+        $stmt->execute([ $data["id_achat"], $data["id_don"], $data["montant_utilise"], $data["date_liaison"] ]);
+    }
 }
