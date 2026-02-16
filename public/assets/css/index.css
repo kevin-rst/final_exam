@@ -1,0 +1,282 @@
+.home-page .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.home-page .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.home-page.dark-theme .page-header {
+    border-bottom-color: var(--border-dark);
+}
+
+.home-page .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--primary-light);
+}
+
+.home-page.dark-theme .page-header h1 {
+    color: var(--primary-dark);
+}
+
+.home-page .page-header p {
+    color: var(--text-muted-light);
+    font-size: 1.1rem;
+}
+
+.home-page.dark-theme .page-header p {
+    color: var(--text-muted-dark);
+}
+
+.home-page .simulation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.home-page .simulation-card {
+    background: var(--card-light);
+    border: 1px solid var(--border-light);
+    border-radius: 24px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-page.dark-theme .simulation-card {
+    background: var(--card-dark);
+    border-color: var(--border-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.home-page .simulation-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+}
+
+.home-page .simulation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-light), var(--primary-hover-light));
+}
+
+.home-page.dark-theme .simulation-card::before {
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-hover-dark));
+}
+
+.home-page .card-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(26, 92, 158, 0.1);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.home-page.dark-theme .card-icon {
+    background: rgba(76, 154, 255, 0.15);
+}
+
+.home-page .card-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--primary-light);
+}
+
+.home-page.dark-theme .card-icon svg {
+    fill: var(--primary-dark);
+}
+
+.home-page .simulation-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.home-page .simulation-card p {
+    color: var(--text-muted-light);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.home-page.dark-theme .simulation-card p {
+    color: var(--text-muted-dark);
+}
+
+.home-page .card-link {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    border: 2px solid var(--primary-light);
+    color: var(--primary-light);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.home-page.dark-theme .card-link {
+    border-color: var(--primary-dark);
+    color: var(--primary-dark);
+}
+
+.home-page .card-link:hover {
+    background: var(--primary-light);
+    color: white;
+}
+
+.home-page.dark-theme .card-link:hover {
+    background: var(--primary-dark);
+    color: var(--bg-dark);
+}
+
+.home-page .info-section {
+    background: var(--card-light);
+    border: 1px solid var(--border-light);
+    border-radius: 24px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow-light);
+}
+
+.home-page.dark-theme .info-section {
+    background: var(--card-dark);
+    border-color: var(--border-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.home-page .info-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.home-page .info-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(26, 92, 158, 0.1);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-page.dark-theme .info-icon {
+    background: rgba(76, 154, 255, 0.15);
+}
+
+.home-page .info-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--primary-light);
+}
+
+.home-page.dark-theme .info-icon svg {
+    fill: var(--primary-dark);
+}
+
+.home-page .info-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.home-page .info-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.home-page .stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: var(--hover-light);
+    border-radius: 16px;
+}
+
+.home-page.dark-theme .stat-item {
+    background: var(--hover-dark);
+}
+
+.home-page .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-light);
+    line-height: 1.2;
+}
+
+.home-page.dark-theme .stat-number {
+    color: var(--primary-dark);
+}
+
+.home-page .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.home-page.dark-theme .stat-label {
+    color: var(--text-muted-dark);
+}
+
+.home-page .quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.home-page .quick-link {
+    padding: 0.75rem 1.5rem;
+    background: var(--hover-light);
+    border: 1px solid var(--border-light);
+    border-radius: 50px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.home-page.dark-theme .quick-link {
+    background: var(--hover-dark);
+    border-color: var(--border-dark);
+    color: var(--text-dark);
+}
+
+.home-page .quick-link:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+    color: white;
+}
+
+.home-page.dark-theme .quick-link:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: var(--bg-dark);
+}
