@@ -1,6 +1,7 @@
 <?php
 
-use app\controllers\ProduitController;
+use app\controllers\BesoinController;
+use app\controllers\DonController;
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\Engine;
 use flight\net\Router;
@@ -15,6 +16,14 @@ $router->group('', function(Router $router) use ($app) {
 
 	$router->get('/', function() {
 		echo "Final exam";
+	});
+
+	$router->group('/besoins', function(Router $router) use ($app) {
+		$router->get('/showForm', [BesoinController::class, 'showForm']);
+	});
+
+	$router->group('/dons', function(Router $router) use ($app) {
+		$router->get('/showForm', [DonController::class, 'showForm']);
 	});
 
 }, [ SecurityHeadersMiddleware::class ]);
