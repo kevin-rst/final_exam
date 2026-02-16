@@ -38,6 +38,6 @@ class BesoinController {
         $besoinModel = new BesoinModel($pdo);
         $besoinModel->createBesoin($data);
 
-        $this->app->render('index');
+        $this->app->redirect('/');
     }
 }

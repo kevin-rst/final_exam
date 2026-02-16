@@ -34,7 +34,7 @@ class DonController {
 
         $donModel->createDon($data);
 
-        $this->app->render('index');
+        $this->app->redirect('/');
     }
 
     public function dispatch() {
@@ -42,6 +42,6 @@ class DonController {
 
         Dispatcher::dispatch($pdo);
 
-        $this->app->render('index');
+        $this->app->redirect('/');
     }
 }

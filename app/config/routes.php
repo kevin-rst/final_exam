@@ -1,5 +1,6 @@
 <?php
 
+use app\controllers\VilleController;
 use app\controllers\BesoinController;
 use app\controllers\DonController;
 use app\middlewares\SecurityHeadersMiddleware;
@@ -14,10 +15,7 @@ use flight\net\Router;
 // This wraps all routes in the group with the SecurityHeadersMiddleware
 $router->group('', function(Router $router) use ($app) {
 
-	$router->get('/', function() use ($app) {
-		$app->render('index');
-		
-	});
+	$router->get('/', [VilleController::class, 'getVilleDetails']);
 
 	$router->group('/besoins', function(Router $router) use ($app) {
 		$router->get('/showForm', [BesoinController::class, 'showForm']);
