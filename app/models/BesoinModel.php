@@ -35,7 +35,7 @@ class BesoinModel {
     }
 
     public function getBesoinDetails() {
-        $query = "SELECT * FROM v_besoin_dons_details WHERE quantite_restante > 0 ORDER BY date_saisie, id_besoin";
+        $query = "SELECT * FROM v_besoin_details WHERE quantite_restante > 0 ORDER BY date_saisie, id_besoin";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute();
