@@ -69,6 +69,7 @@ SELECT
     d.date_distribution
 FROM bngrc_ville v
 LEFT JOIN bngrc_distribution d ON d.id_ville = v.id_ville
+JOIN bngrc_besoin b ON d.id_type = b.id_type AND d.id_ville = b.id_ville
 JOIN bngrc_type_besoin t ON d.id_type = t.id_type
 LEFT JOIN bngrc_don don ON d.id_don = don.id_don
 JOIN bngrc_categorie_besoin c ON t.id_categorie = c.id_categorie
