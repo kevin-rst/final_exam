@@ -30,9 +30,12 @@ class DistributionModel {
     }
 
     public function createDistribution($data) {
-        $query = "INSERT INTO bngrc_distribution (id_don, id_ville, id_type, quantite) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO bngrc_distribution (id_don, id_ville, id_type, quantite, id_achat_source, type_distribution) VALUES (?, ?, ?, ?, ?, ?)";
+
+        $achatSource = $data["achat_source"] ?? null;
+        $typeDistribution = $data["type_distribution"] ?? 'don_direct';
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute([ $data["don"], $data["ville"], $data["type"], $data["quantite"] ]);
+        $stmt->execute([ $data["don"], $data["ville"], $data["type"], $data["quantite"], $achatSource, $typeDistribution ]);
     }
 }

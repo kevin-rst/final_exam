@@ -126,6 +126,6 @@
         <span id="themeText">Mode clair</span>
     </button>
 
-    <script src="<?= BASE_URL ?>/public/assets/js/theme.js" nonce="<?= Flight::app()->get('csp_nonce') ?>"></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/theme.js"></script>
 </body>
 </html>

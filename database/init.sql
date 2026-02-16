@@ -30,18 +30,54 @@ CREATE TABLE bngrc_besoin (
     id_besoin INT AUTO_INCREMENT PRIMARY KEY,
     id_ville INT NOT NULL,
     id_type INT NOT NULL,
-    quantite INT NOT NULL,
+    quantite DECIMAL(10, 2) NOT NULL,
+    quantite_restante DECIMAL(10, 2) NOT NULL,
     date_saisie DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_ville) REFERENCES bngrc_ville(id_ville),
     FOREIGN KEY (id_type) REFERENCES bngrc_type_besoin(id_type)
 );
 
+CREATE TABLE bngrc_param_frais (
+    id_frais INT AUTO_INCREMENT PRIMARY KEY,
+    taux DECIMAL(5,2) NOT NULL, -- Pourcentage (ex: 10.00 pour 10%)
+    date_application DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE bngrc_achat (
+    id_achat INT AUTO_INCREMENT PRIMARY KEY,
+    id_besoin INT NOT NULL,
+    quantite_achetee DECIMAL(10,2) NOT NULL,
+    montant_sous_total DECIMAL(12,2) NOT NULL, -- Prix unitaire * quantite (sans frais)
+    montant_frais DECIMAL(12,2) NOT NULL, -- Montant des frais
+    montant_total DECIMAL(12,2) NOT NULL, -- Sous-total + frais
+    frais_applique DECIMAL(5,2) NOT NULL, -- Taux de frais au moment de l'achat
+    date_achat DATETIME DEFAULT CURRENT_TIMESTAMP,
+    statut ENUM('simule', 'valide', 'annule') DEFAULT 'simule',
+    date_validation DATETIME NULL,
+    date_annulation DATETIME NULL,
+    FOREIGN KEY (id_besoin) REFERENCES bngrc_besoin(id_besoin)
+);
+
 CREATE TABLE bngrc_don (
     id_don INT AUTO_INCREMENT PRIMARY KEY,
     id_type INT NOT NULL,
-    quantite INT NOT NULL,
+    quantite DECIMAL(10, 2) NOT NULL,
+    est_utilise BOOLEAN DEFAULT FALSE,
     date_don DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_type) REFERENCES bngrc_type_besoin(id_type)
+    id_achat_source INT NULL, -- AJOUT V2 (pour les dons générés par achat)
+    FOREIGN KEY (id_type) REFERENCES bngrc_type_besoin(id_type),
+    FOREIGN KEY (id_achat_source) REFERENCES bngrc_achat(id_achat)
+);
+
+CREATE TABLE bngrc_achat_don (
+    id_achat_don INT AUTO_INCREMENT PRIMARY KEY,
+    id_achat INT NOT NULL,
+    id_don INT NOT NULL,
+    montant_utilise DECIMAL(12,2) NOT NULL,
+    date_liaison DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_achat) REFERENCES bngrc_achat(id_achat),
+    FOREIGN KEY (id_don) REFERENCES bngrc_don(id_don),
+    UNIQUE KEY unique_achat_don (id_achat, id_don) -- Éviter les doublons
 );
 
 CREATE TABLE bngrc_distribution (
@@ -49,11 +85,14 @@ CREATE TABLE bngrc_distribution (
     id_don INT NOT NULL,
     id_ville INT NOT NULL,
     id_type INT NOT NULL,
-    quantite INT NOT NULL,
+    quantite DECIMAL(10, 2) NOT NULL,
+    id_achat_source INT NULL, -- AJOUT V2
+    type_distribution ENUM('don_direct', 'achat') DEFAULT 'don_direct', -- AJOUT V2
     date_distribution DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_don) REFERENCES bngrc_don(id_don),
     FOREIGN KEY (id_ville) REFERENCES bngrc_ville(id_ville),
-    FOREIGN KEY (id_type) REFERENCES bngrc_type_besoin(id_type)
+    FOREIGN KEY (id_type) REFERENCES bngrc_type_besoin(id_type),
+    FOREIGN KEY (id_achat_source) REFERENCES bngrc_achat(id_achat)
 );
 
 CREATE OR REPLACE VIEW v_ville_besoins_dons AS
@@ -65,13 +104,12 @@ SELECT
     t.nom AS nom_type,
     c.nom AS nom_categorie,
     COALESCE(SUM(b.quantite), 0) AS quantite_besoin,
-    COALESCE(SUM(d.quantite), 0) AS quantite_don_attribue
+    COALESCE(SUM(b.quantite - b.quantite_restante), 0) AS quantite_don_attribue
 FROM bngrc_ville v
 JOIN bngrc_region r ON v.id_region = r.id_region
 LEFT JOIN bngrc_besoin b ON b.id_ville = v.id_ville
 LEFT JOIN bngrc_type_besoin t ON t.id_type = b.id_type
 LEFT JOIN bngrc_categorie_besoin c ON c.id_categorie = t.id_categorie
-LEFT JOIN bngrc_distribution d ON d.id_ville = v.id_ville AND d.id_type = b.id_type
 GROUP BY
     v.id_ville,
     v.nom,
@@ -79,7 +117,6 @@ GROUP BY
     t.id_type,
     t.nom,
     c.nom;
-
 
 CREATE OR REPLACE VIEW v_ville_besoins_dons_details AS
 SELECT
@@ -89,18 +126,13 @@ SELECT
     b.id_besoin,
     b.date_saisie,
     b.quantite AS quantite_besoin,
+    b.quantite_restante,
+    (b.quantite - b.quantite_restante) AS quantite_don_attribue,
     t.id_type,
     t.nom AS nom_type,
-    c.nom AS nom_categorie,
-    d.id_distribution,
-    d.id_don,
-    d.quantite AS quantite_don_attribue,
-    d.date_distribution
+    c.nom AS nom_categorie
 FROM bngrc_ville v
 JOIN bngrc_region r ON v.id_region = r.id_region
 LEFT JOIN bngrc_besoin b ON b.id_ville = v.id_ville
 LEFT JOIN bngrc_type_besoin t ON t.id_type = b.id_type
-LEFT JOIN bngrc_categorie_besoin c ON c.id_categorie = t.id_categorie
-LEFT JOIN bngrc_distribution d ON d.id_ville = v.id_ville AND d.id_type = b.id_type;
-
-
+LEFT JOIN bngrc_categorie_besoin c ON c.id_categorie = t.id_categorie;

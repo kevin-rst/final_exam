@@ -34,7 +34,7 @@
         } ?>
 
         <div class="page-footer">
-            <a class="back-button" href="<?= BASE_URL ?>">Retour</a>
+            <a class="back-button" href="<?= BASE_URL ?>/">Retour</a>
         </div>
     </div>
 

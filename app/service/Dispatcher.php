@@ -32,12 +32,10 @@ class Dispatcher
             foreach ($besoins as $besoin) {
                 if ($resteDon <= 0) break;
 
+                $idBesoin = $besoin['id_besoin'];
                 $idVille = $besoin['id_ville'];
-                $quantiteBesoin = $besoin['quantite'];
-
-                $dejaDistribueBesoin = $distributionModel->getDistributionBy($idType, $idVille)['total'];
-
-                $resteBesoin = $quantiteBesoin - $dejaDistribueBesoin;
+                $quantiteRestante = $besoin['quantite_restante'] ?? $besoin['quantite'];
+                $resteBesoin = $quantiteRestante;
 
                 if ($resteBesoin <= 0) continue;
 
@@ -47,8 +45,19 @@ class Dispatcher
                     'don' => $idDon,
                     'ville' => $idVille,
                     'type' => $idType,
-                    'quantite' => $quantite
+                    'quantite' => $quantite,
+                    'achat_source' => null,
+                    'type_distribution' => 'don_direct'
                 ]);
+
+                $resteDon -= $quantite;
+
+                $nouvelleQuantiteRestante = $resteBesoin - $quantite;
+                $besoinModel->updateQuantiteRestante($idBesoin, $nouvelleQuantiteRestante);
+            }
+
+            if ($resteDon <= 0) {
+                $donModel->setDonUtilise($idDon, true);
             }
         }
     }

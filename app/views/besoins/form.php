@@ -53,7 +53,7 @@
         </div>
 
         <div class="page-footer">
-            <a class="back-button" href="<?= BASE_URL ?>">Retour</a>
+            <a class="back-button" href="<?= BASE_URL ?>/">Retour</a>
         </div>
     </div>
 
@@ -73,7 +73,7 @@
         <span id="themeText">Mode clair</span>
     </button>
 
-    <script src="<?= BASE_URL ?>/public/assets/js/theme.js" nonce="<?= Flight::app()->get('csp_nonce') ?>"></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/theme.js"></script>
 </body>
 
 </html>

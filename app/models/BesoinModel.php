@@ -12,10 +12,10 @@ class BesoinModel {
     }
 
     public function createBesoin($data) {
-        $query = "INSERT INTO bngrc_besoin (id_ville, id_type, quantite, date_saisie) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO bngrc_besoin (id_ville, id_type, quantite, quantite_restante, date_saisie) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute([ $data["ville"], $data["type_besoin"], $data["quantite"], $data["date"] ]);
+        $stmt->execute([ $data["ville"], $data["type_besoin"], $data["quantite"], $data["quantite"], $data["date"] ]);
     }
 
     public function getBesoinByIdType($id_type) {
@@ -25,5 +25,12 @@ class BesoinModel {
         $stmt->execute([ $id_type ]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateQuantiteRestante($id_besoin, $quantite_restante) {
+        $query = "UPDATE bngrc_besoin SET quantite_restante = ? WHERE id_besoin = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([ $quantite_restante, $id_besoin ]);
     }
 }

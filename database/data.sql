@@ -25,3 +25,6 @@ INSERT INTO bngrc_type_besoin (nom, id_categorie, prix_unitaire) VALUES
 ('Bois', 2, 15000.00),
 
 ('Don en argent', 3, 1.00);
+
+INSERT INTO bngrc_param_frais (taux) 
+VALUES (10.00);
