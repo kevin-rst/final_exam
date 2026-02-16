@@ -8,7 +8,6 @@ use app\models\DonModel;
 
 class Dispatcher
 {
-
     public static function dispatch($pdo)
     {
         $donModel = new DonModel($pdo);

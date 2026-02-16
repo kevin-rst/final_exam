@@ -15,7 +15,7 @@ use flight\net\Router;
 $router->group('', function(Router $router) use ($app) {
 
 	$router->get('/', function() use ($app) {
-		$app->render('index');	
+		$app->render('index');
 		
 	});
 
