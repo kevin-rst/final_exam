@@ -1,0 +1,27 @@
+INSERT INTO bngrc_region (nom) VALUES
+('Analamanga'),
+('Vakinankaratra'),
+('Atsinanana');
+
+INSERT INTO bngrc_ville (nom, id_region) VALUES
+('Antananarivo', 1),
+('Ambohidratrimo', 1),
+('Antsirabe', 2),
+('Betafo', 2),
+('Toamasina', 3);
+
+INSERT INTO bngrc_categorie_besoin (nom) VALUES
+('En nature'),
+('Materiaux'),
+('Argent');
+
+INSERT INTO bngrc_type_besoin (nom, id_categorie, prix_unitaire) VALUES
+('Riz', 1, 3000.00),
+('Huile', 1, 8000.00),
+('Sucre', 1, 4000.00),
+
+('Tôle', 2, 25000.00),
+('Clou', 2, 500.00),
+('Bois', 2, 15000.00),
+
+('Don en argent', 3, 1.00);
