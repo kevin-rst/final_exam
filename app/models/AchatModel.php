@@ -43,7 +43,7 @@ class AchatModel {
                 JOIN bngrc_besoin b ON a.id_besoin = b.id_besoin
                 JOIN bngrc_ville v ON b.id_ville = v.id_ville
                 JOIN bngrc_type_besoin t ON b.id_type = t.id_type
-                WHERE a.statut != ?";
+                WHERE a.statut = ?";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute(["simule"]);
