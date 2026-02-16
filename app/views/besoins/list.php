@@ -26,7 +26,7 @@
                         <td><?= $besoin['nom_type'] ?></td>
                         <td><?= $besoin['quantite'] ?></td>
                         <td><?= $besoin['quantite_restante'] ?></td>
-                        <td><?= $besoin['date'] ?></td>
+                        <td><?= $besoin['date_saisie'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
