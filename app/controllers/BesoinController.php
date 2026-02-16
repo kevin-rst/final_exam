@@ -40,4 +40,15 @@ class BesoinController {
 
         $this->app->redirect('/');
     }
+
+    public function getBesoinDetails() {
+        $pdo = $this->app->db();
+
+        $besoinModel = new BesoinModel($pdo);
+        $details = $besoinModel->getBesoinDetails();
+
+        $this->app->render('besoins/liste.php', [
+            'besoins' => $details
+        ]);
+    }
 }

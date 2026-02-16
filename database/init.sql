@@ -136,3 +136,25 @@ JOIN bngrc_region r ON v.id_region = r.id_region
 LEFT JOIN bngrc_besoin b ON b.id_ville = v.id_ville
 LEFT JOIN bngrc_type_besoin t ON t.id_type = b.id_type
 LEFT JOIN bngrc_categorie_besoin c ON c.id_categorie = t.id_categorie;
+
+CREATE OR REPLACE VIEW v_besoin_details AS
+SELECT
+    b.id_besoin,
+    b.id_ville,
+    v.nom AS nom_ville,
+    r.nom AS nom_region,
+    b.id_type,
+    t.nom AS nom_type,
+    c.nom AS nom_categorie,
+    t.prix_unitaire,
+    b.quantite,
+    b.quantite_restante,
+    (b.quantite - b.quantite_restante) AS quantite_satisfaite,
+    b.date_saisie,
+    (b.quantite * t.prix_unitaire) AS montant_total_besoin,
+    ((b.quantite - b.quantite_restante) * t.prix_unitaire) AS montant_satisfait
+FROM bngrc_besoin b
+JOIN bngrc_ville v ON b.id_ville = v.id_ville
+JOIN bngrc_region r ON v.id_region = r.id_region
+JOIN bngrc_type_besoin t ON b.id_type = t.id_type
+LEFT JOIN bngrc_categorie_besoin c ON t.id_categorie = c.id_categorie;

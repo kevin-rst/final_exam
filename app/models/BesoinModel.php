@@ -33,4 +33,13 @@ class BesoinModel {
         $stmt = $this->db->prepare($query);
         $stmt->execute([ $quantite_restante, $id_besoin ]);
     }
+
+    public function getBesoinDetails() {
+        $query = "SELECT * FROM v_besoin_dons_details WHERE quantite_restante > 0 ORDER BY date_saisie, id_besoin";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
