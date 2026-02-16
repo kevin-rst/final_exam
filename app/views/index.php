@@ -25,6 +25,7 @@
             <a href="<?= BASE_URL ?>/dons/showForm" class="quick-link">Saisir les dons</a>
             <a href="<?= BASE_URL ?>/dons/dispatch" class="quick-link">Simuler dispatch</a>
             <a href="<?= BASE_URL ?>/ville/details" class="quick-link">Voir les détails des villes</a>
+            <a href="<?= BASE_URL ?>/achats/list" class="quick-link">Liste des achats</a>
         </div>
 
         <!-- Cartes de simulation -->

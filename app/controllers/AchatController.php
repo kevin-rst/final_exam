@@ -28,4 +28,11 @@ class AchatController
 
         $this->app->redirect('/');
     }
+
+    public function getAllAchats() {
+        $achatModel = new AchatModel($this->app->db());
+        $achats = $achatModel->getAllAchats();
+
+        $this->app->render( 'achat/list', [ 'achats' => $achats ] );
+    }
 }
