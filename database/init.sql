@@ -57,6 +57,21 @@ CREATE TABLE bngrc_distribution (
 );
 
 
-
+CREATE OR REPLACE VIEW v_ville_details AS
+SELECT 
+    d.id_distribution,
+    v.nom AS nom_ville,
+    t.nom AS nom_type,
+    c.nom AS nom_categorie,
+    don.quantite AS quantite_don,
+    d.quantite AS quantite_distribuee,
+    r.nom AS nom_region,
+    d.date_distribution
+FROM bngrc_distribution d
+JOIN bngrc_ville v ON d.id_ville = v.id_ville
+JOIN bngrc_type_besoin t ON d.id_type = t.id_type
+JOIN bngrc_don don ON d.id_don = don.id_don
+JOIN bngrc_categorie_besoin c ON t.id_categorie = c.id_categorie
+JOIN bngrc_region r ON v.id_region = r.id_region;
 
 
