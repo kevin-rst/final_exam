@@ -65,23 +65,69 @@
                     <?php endif; ?>
                 </form>
 
+                <?php
+                    $totalAchats = isset($achats) ? count($achats) : 0;
+                    $totalMontant = 0;
+                    $totalQuantiteAchetee = 0;
+                    if (!empty($achats)) {
+                        foreach ($achats as $achat) {
+                            $totalMontant += (float) $achat['montant_total'];
+                            $totalQuantiteAchetee += (float) $achat['quantite_achetee'];
+                        }
+                    }
+                ?>
+                <div class="table-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 16 16" aria-hidden="true">
+                                <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v9a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 11.5v-9zM2.5 2a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-11z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="stat-label">Achats listés</div>
+                            <div class="stat-value"><?= $totalAchats ?></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 16 16" aria-hidden="true">
+                                <path d="M0 2a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v2h2.5A1.5 1.5 0 0 1 13 5.5V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm2 0a.5.5 0 0 0-.5.5V4h7V2.5A.5.5 0 0 0 8 2H2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="stat-label">Quantité achetée</div>
+                            <div class="stat-value"><?= $totalQuantiteAchetee ?></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 16 16" aria-hidden="true">
+                                <path d="M8 0a4 4 0 0 0-4 4v2H2.5A1.5 1.5 0 0 0 1 7.5V13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5A1.5 1.5 0 0 0 13.5 6H12V4a4 4 0 0 0-4-4zm-2 6V4a2 2 0 1 1 4 0v2H6z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="stat-label">Montant total</div>
+                            <div class="stat-value"><?= number_format($totalMontant, 2, '.', ' ') ?></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="table-scroll">
-                    <table>
+                    <table class="table-list">
                         <thead>
                             <tr>
                                 <th>ID Achat</th>
                                 <th>Ville</th>
                                 <th>Type de besoin</th>
-                                <th>Quantité besoin</th>
-                                <th>Quantité restante</th>
-                                <th>Quantité achetée</th>
-                                <th>Prix Unitaire</th>
-                                <th>Montant Sous-total</th>
-                                <th>Frais</th>
-                                <th>Montant Total</th>
+                                <th class="cell-number">Quantité besoin</th>
+                                <th class="cell-number">Quantité restante</th>
+                                <th class="cell-number">Quantité achetée</th>
+                                <th class="cell-number">Prix Unitaire</th>
+                                <th class="cell-number">Montant Sous-total</th>
+                                <th class="cell-number">Frais</th>
+                                <th class="cell-number">Montant Total</th>
                                 <th>Statut</th>
-                                <th>Date Achat</th>
-                                <th>ACTION</th>
+                                <th class="cell-date">Date Achat</th>
+                                <th class="cell-action">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,16 +136,16 @@
                                     <td><?= $achat['id_achat'] ?></td>
                                     <td><?= $achat['nom_ville'] ?></td>
                                     <td><?= $achat['nom_type'] ?></td>
-                                    <td><?= $achat['quantite'] ?></td>
-                                    <td><?= $achat['quantite_restante'] ?></td>
-                                    <td><?= $achat['quantite_achetee'] ?></td>
-                                    <td><?= $achat['prix_unitaire'] ?></td>
-                                    <td><?= $achat['montant_sous_total'] ?></td>
-                                    <td><?= $achat['montant_frais'] ?></td>
-                                    <td><?= $achat['montant_total'] ?></td>
+                                    <td class="cell-number"><?= $achat['quantite'] ?></td>
+                                    <td class="cell-number"><?= $achat['quantite_restante'] ?></td>
+                                    <td class="cell-number"><?= $achat['quantite_achetee'] ?></td>
+                                    <td class="cell-number"><?= $achat['prix_unitaire'] ?></td>
+                                    <td class="cell-number"><?= $achat['montant_sous_total'] ?></td>
+                                    <td class="cell-number"><?= $achat['montant_frais'] ?></td>
+                                    <td class="cell-number"><?= $achat['montant_total'] ?></td>
                                     <td><?= $achat['statut'] ?></td>
-                                    <td><?= $achat['date_achat'] ?></td>
-                                    <td>
+                                    <td class="cell-date"><?= $achat['date_achat'] ?></td>
+                                    <td class="cell-action">
                                         <div class="table-actions">
                                             <a class="btn btn-primary btn-sm" href="<?= BASE_URL ?>/achats/validate/<?= $achat['id_achat'] ?>">Valider</a>
                                             <a class="btn btn-muted btn-sm" href="<?= BASE_URL ?>/achats/simulate/<?= $achat['id_achat'] ?>">Simuler</a>
