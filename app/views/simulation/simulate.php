@@ -6,7 +6,6 @@
     <title>Dispatch</title>
 </head>
 <body>
-    <?php include __DIR__ . '/../includes/nav.php'; ?>
 
     <h2>Choisissez la méthode dont vous voulez dispatcher les dons</h2>
         <form action="<?= BASE_URL ?>/dons/dispatch" method="post">
@@ -22,8 +21,6 @@
 
             <button type="submit" >Valider</button>
         </form>
-
-
-    <?php include __DIR__ . '/../includes/footer.php'; ?>       
+      
 </body>
 </html>
