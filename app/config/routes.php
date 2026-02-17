@@ -46,7 +46,10 @@ $router->group('', function(Router $router) use ($app) {
 	$router->group('/dons', function(Router $router) use ($app) {
 		$router->get('/showForm', [DonController::class, 'showForm']);
 		$router->post('/create', [ DonController::class, 'create' ]);
-		$router->get('/dispatch', [ DonController::class, 'dispatch' ]);
+		$router->get('/dispatch', function() use ($app) {
+			$app->render('simulation/simulate');
+		});
+		$router->post('/dispatch', [ DonController::class, 'dispatch' ])
 	});
 
 	$router->get('/ville/details', [VilleController::class, 'getVilleDetails']);

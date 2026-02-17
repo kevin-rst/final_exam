@@ -40,7 +40,9 @@ class DonController {
     public function dispatch() {
         $pdo = $this->app->db();
 
-        Dispatcher::dispatch($pdo);
+        $data = $this->app->request()->data;
+
+        Dispatcher::dispatch($pdo, $data['method']);
 
         $this->app->redirect('/');
     }
