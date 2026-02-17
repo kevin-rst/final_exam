@@ -49,7 +49,7 @@ $router->group('', function(Router $router) use ($app) {
 		$router->get('/dispatch', function() use ($app) {
 			$app->render('simulation/simulate');
 		});
-		$router->post('/dispatch', [ DonController::class, 'dispatch' ])
+		$router->post('/dispatch', [ DonController::class, 'dispatch' ]);
 	});
 
 	$router->get('/ville/details', [VilleController::class, 'getVilleDetails']);
