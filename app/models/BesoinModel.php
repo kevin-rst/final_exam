@@ -27,6 +27,24 @@ class BesoinModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getMinBesoinByIdType($id_type) {
+        $query = "SELECT * FROM bngrc_besoin WHERE id_type = ? ORDER BY quantite_restante, id_besoin";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([ $id_type ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllBesoinsByIdType($id_type) {
+        $query = "SELECT * FROM bngrc_besoin WHERE id_type = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$id_type]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getBesoinById($id_besoin) {
         $query = "SELECT * FROM bngrc_besoin WHERE id_besoin = ?";
 
