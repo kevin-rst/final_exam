@@ -25,19 +25,10 @@ INSERT INTO bngrc_type_besoin (id_type, nom, id_categorie, prix_unitaire) VALUES
 (6, 'Clous (kg)', 2, 8000),
 (7, 'Bois', 2, 10000),
 (8, 'Argent', 3, 1),
-(9, 'groupe', 2, 675000);
+(9, 'groupe', 2, 6750000);
 
 INSERT INTO bngrc_type_besoin (id_type, nom, id_categorie, prix_unitaire)
 VALUES (10, 'Haricots', 1, 4000);
 
-INSERT INTO bngrc_param_frais (taux) 
+INSERT INTO bngrc_param_frais (taux)
 VALUES (10.00);
-
-
--- DROP TABLE bngrc_distribution;
--- DROP TABLE bngrc_don;
--- DROP TABLE bngrc_besoin;
--- DROP TABLE bngrc_type_besoin ;
--- DROP TABLE bngrc_categorie_besoin;
--- DROP TABLE bngrc_ville;
--- DROP TABLE bngrc_region;

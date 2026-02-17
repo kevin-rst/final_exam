@@ -159,3 +159,21 @@ JOIN bngrc_ville v ON b.id_ville = v.id_ville
 JOIN bngrc_region r ON v.id_region = r.id_region
 JOIN bngrc_type_besoin t ON b.id_type = t.id_type
 LEFT JOIN bngrc_categorie_besoin c ON t.id_categorie = c.id_categorie;
+
+
+-- Vues
+-- DROP VIEW IF EXISTS v_ville_besoins_dons;
+-- DROP VIEW IF EXISTS v_ville_besoins_dons_details;
+-- DROP VIEW IF EXISTS v_besoin_details;
+
+-- -- Tables (ordre dépendances FK)
+-- DROP TABLE IF EXISTS bngrc_distribution;
+-- DROP TABLE IF EXISTS bngrc_achat_don;
+-- DROP TABLE IF EXISTS bngrc_don;
+-- DROP TABLE IF EXISTS bngrc_achat;
+-- DROP TABLE IF EXISTS bngrc_besoin;
+-- DROP TABLE IF EXISTS bngrc_type_besoin;
+-- DROP TABLE IF EXISTS bngrc_ville;
+-- DROP TABLE IF EXISTS bngrc_categorie_besoin;
+-- DROP TABLE IF EXISTS bngrc_region;
+-- DROP TABLE IF EXISTS bngrc_param_frais;
