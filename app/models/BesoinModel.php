@@ -27,6 +27,15 @@ class BesoinModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getBesoinById($id_besoin) {
+        $query = "SELECT * FROM bngrc_besoin WHERE id_besoin = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([ $id_besoin ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function updateQuantiteRestante($id_besoin, $quantite_restante) {
         $query = "UPDATE bngrc_besoin SET quantite_restante = ? WHERE id_besoin = ?";
 

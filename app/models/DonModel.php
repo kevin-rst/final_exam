@@ -12,10 +12,14 @@ class DonModel {
     }
 
     public function createDon($data) {
-        $query = "INSERT INTO bngrc_don (id_type, quantite, date_don) VALUES (?, ?, ?)";
+        $query = "INSERT INTO bngrc_don (id_type, quantite, date_don, id_achat_source) VALUES (?, ?, ?, ?)";
+
+        $achatSource = $data["achat_source"] ?? null;
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute([ $data["type"], $data["quantite"], $data["date"] ]);
+        $stmt->execute([ $data["type"], $data["quantite"], $data["date"], $achatSource ]);
+
+        return $this->db->lastInsertId();
     }
 
     public function getAllDons() {
@@ -41,5 +45,24 @@ class DonModel {
         $stmt->execute([ $type ]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getRemainQuantity($id_don) {
+        $query = "SELECT 
+            d.quantite,
+            COALESCE(SUM(dist.quantite), 0) AS quantite_distribuee
+        FROM bngrc_don d
+        LEFT JOIN bngrc_distribution dist ON d.id_don = dist.id_don
+        WHERE d.id_don = ?
+        GROUP BY d.id_don";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([ $id_don ]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result['quantite'] - $result['quantite_distribuee'];
+        }
+        return 0;
     }
 }

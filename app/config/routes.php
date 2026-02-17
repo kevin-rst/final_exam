@@ -4,6 +4,7 @@ use app\controllers\VilleController;
 use app\controllers\BesoinController;
 use app\controllers\DonController;
 use app\controllers\AchatController;
+use app\controllers\RecapController;
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\Engine;
 use flight\net\Router;
@@ -33,6 +34,12 @@ $router->group('', function(Router $router) use ($app) {
 		$router->post('/buy', [AchatController::class, 'acheter']);
 		$router->get('/list', [AchatController::class, 'getAllAchats']);
 		$router->get('/validate/@id', [ AchatController::class, 'validerAchat' ]);
+		$router->get('/simulate/@id', [ AchatController::class, 'simulerAchat' ]);
+	});
+
+	$router->group('/recap', function(Router $router) use ($app) {
+		$router->get('', [RecapController::class, 'index']);
+		$router->get('/data', [RecapController::class, 'data']);
 	});
 	
 

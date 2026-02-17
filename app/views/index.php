@@ -26,6 +26,7 @@
             <a href="<?= BASE_URL ?>/dons/dispatch" class="quick-link">Simuler dispatch</a>
             <a href="<?= BASE_URL ?>/ville/details" class="quick-link">Voir les détails des villes</a>
             <a href="<?= BASE_URL ?>/achats/list" class="quick-link">Liste des achats</a>
+            <a href="<?= BASE_URL ?>/recap" class="quick-link">Récapitulatif</a>
         </div>
 
         <!-- Cartes de simulation -->
@@ -40,6 +41,19 @@
                 <h3>Besoins des villes</h3>
                 <p>Enregistrez les besoins urgents des villes sinistrées : nourriture, eau, médicaments, hébergement...</p>
                 <a href="<?= BASE_URL ?>/besoins/showForm" class="card-link">Saisir les besoins</a>
+            </div>
+
+            <!-- Carte Liste besoins -->
+            <div class="simulation-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 16 16">
+                        <path d="M3 2.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                        <path d="M1.5 1A1.5 1.5 0 0 0 0 2.5v11A1.5 1.5 0 0 0 1.5 15h13a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 14.5 1h-13zM1 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-11z"/>
+                    </svg>
+                </div>
+                <h3>Liste des besoins</h3>
+                <p>Consultez les besoins enregistrés par ville et lancez un achat ciblé.</p>
+                <a href="<?= BASE_URL ?>/besoins/list" class="card-link">Voir la liste</a>
             </div>
 
             <!-- Carte Dons -->
@@ -66,6 +80,32 @@
                 <h3>Simulation dispatch</h3>
                 <p>Lancez la simulation d'attribution des dons aux villes selon leurs besoins prioritaires.</p>
                 <a href="<?= BASE_URL ?>/dons/dispatch" class="card-link">Simuler dispatch</a>
+            </div>
+
+            <!-- Carte Liste achats -->
+            <div class="simulation-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 16 16">
+                        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v9a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 11.5v-9zM2.5 2a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-11z"/>
+                        <path d="M4 4.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </div>
+                <h3>Liste des achats</h3>
+                <p>Suivez les achats liés aux besoins et validez les opérations en attente.</p>
+                <a href="<?= BASE_URL ?>/achats/list" class="card-link">Voir les achats</a>
+            </div>
+
+            <!-- Carte Récapitulatif -->
+            <div class="simulation-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 16 16">
+                        <path d="M2 1.5A1.5 1.5 0 0 1 3.5 0h9A1.5 1.5 0 0 1 14 1.5v13A1.5 1.5 0 0 1 12.5 16h-9A1.5 1.5 0 0 1 2 14.5v-13zM3.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-13a.5.5 0 0 0-.5-.5h-9z"/>
+                        <path d="M5 4.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </div>
+                <h3>Récapitulatif</h3>
+                <p>Consultez le montant total des besoins, satisfaits et restants.</p>
+                <a href="<?= BASE_URL ?>/recap" class="card-link">Voir le récap</a>
             </div>
 
             <!-- Carte Détails Villes -->
