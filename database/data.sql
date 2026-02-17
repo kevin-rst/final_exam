@@ -1,37 +1,41 @@
-INSERT INTO bngrc_region (nom) VALUES
-('Analamanga'),
-('Vakinankaratra'),
-('Atsinanana');
+INSERT INTO bngrc_region (id_region, nom) VALUES
+(1, 'Atsinanana'),
+(2, 'Alaotra-Mangoro'),
+(3, 'Sava'),
+(4, 'Diana');
 
-INSERT INTO bngrc_ville (nom, id_region) VALUES
-('Antananarivo', 1),
-('Ambohidratrimo', 1),
-('Antsirabe', 2),
-('Betafo', 2),
-('Toamasina', 3);
+INSERT INTO bngrc_ville (id_ville, nom, id_region) VALUES
+(1, 'Toamasina', 1),
+(2, 'Mananjary', 2),
+(3, 'Farafangana', 3),
+(4, 'Nosy Be', 4),
+(5, 'Morondava', 2);
 
-INSERT INTO bngrc_categorie_besoin (nom) VALUES
-('En nature'),
-('Materiaux'),
-('Argent');
+INSERT INTO bngrc_categorie_besoin (id_categorie, nom) VALUES
+(1, 'nature'),
+(2, 'materiel'),
+(3, 'argent');
 
-INSERT INTO bngrc_type_besoin (nom, id_categorie, prix_unitaire) VALUES
-('Riz', 1, 3000.00),
-('Huile', 1, 8000.00),
-('Sucre', 1, 4000.00),
+INSERT INTO bngrc_type_besoin (id_type, nom, id_categorie, prix_unitaire) VALUES
+(1, 'Riz (kg)', 1, 3000),
+(2, 'Eau (L)', 1, 1000),
+(3, 'Huile (L)', 1, 6000),
+(4, 'Tole', 2, 25000),
+(5, 'Bache', 2, 15000),
+(6, 'Clous (kg)', 2, 8000),
+(7, 'Bois', 2, 10000),
+(8, 'Argent', 3, 1),
+(9, 'groupe', 2, 675000);
 
-('Tôle', 2, 25000.00),
-('Clou', 2, 500.00),
-('Bois', 2, 15000.00),
-
-('Don en argent', 3, 1.00);
+INSERT INTO bngrc_type_besoin (id_type, nom, id_categorie, prix_unitaire)
+VALUES (10, 'Haricots', 1, 4000);
 
 INSERT INTO bngrc_param_frais (taux) 
 VALUES (10.00);
 
 
--- DROP TABLE bngrc_distribution;          
--- DROP TABLE bngrc_don;                  
+-- DROP TABLE bngrc_distribution;
+-- DROP TABLE bngrc_don;
 -- DROP TABLE bngrc_besoin;
 -- DROP TABLE bngrc_type_besoin ;
 -- DROP TABLE bngrc_categorie_besoin;
