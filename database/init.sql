@@ -37,6 +37,7 @@ CREATE TABLE bngrc_besoin (
     FOREIGN KEY (id_type) REFERENCES bngrc_type_besoin(id_type)
 );
 
+--
 CREATE TABLE bngrc_param_frais (
     id_frais INT AUTO_INCREMENT PRIMARY KEY,
     taux DECIMAL(5,2) NOT NULL, -- Pourcentage (ex: 10.00 pour 10%)

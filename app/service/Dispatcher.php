@@ -8,7 +8,7 @@ use app\models\DonModel;
 
 class Dispatcher
 {
-    public static function dispatch($pdo)
+    public static function dispatch($pdo, $method)
     {
         $donModel = new DonModel($pdo);
         $dons = $donModel->getAllDons();
@@ -27,7 +27,18 @@ class Dispatcher
 
             if ($resteDon <= 0) continue;
 
-            $besoins = $besoinModel->getBesoinByIdType($idType);
+            switch($method) {
+                case 'date_saisie':
+                    $besoins = $besoinModel->getBesoinByIdType($idType);
+                    break;
+                case 'qte_min':
+                    $besoins = $besoinModel->getMinBesoinByIdType($idType);
+                    break;
+                case 'proportion':
+                    $besoins = $besoinModel->getAllBesoinsByIdType($idType);
+                default:
+                    break;
+            }
 
             foreach ($besoins as $besoin) {
                 if ($resteDon <= 0) break;
@@ -39,7 +50,11 @@ class Dispatcher
 
                 if ($resteBesoin <= 0) continue;
 
-                $quantite = min($resteDon, $resteBesoin);
+                if ($method === 'proportion') {
+                    $quantite = floor($resteBesoin / $resteDon);
+                } else {
+                    $quantite = min($resteDon, $resteBesoin);
+                }
 
                 $distributionModel->createDistribution([
                     'don' => $idDon,
@@ -50,7 +65,9 @@ class Dispatcher
                     'type_distribution' => 'don_direct'
                 ]);
 
-                $resteDon -= $quantite;
+                if ($method !== 'proportion') {
+                    $resteDon -= $quantite;
+                }
 
                 $nouvelleQuantiteRestante = $resteBesoin - $quantite;
                 $besoinModel->updateQuantiteRestante($idBesoin, $nouvelleQuantiteRestante);
