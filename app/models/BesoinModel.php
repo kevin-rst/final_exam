@@ -33,7 +33,7 @@ class BesoinModel {
         $stmt = $this->db->prepare($query);
         $stmt->execute([ $id_type ]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllBesoinsByIdType($id_type) {
