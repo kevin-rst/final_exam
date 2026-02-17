@@ -38,4 +38,11 @@ class DistributionModel {
         $stmt = $this->db->prepare($query);
         $stmt->execute([ $data["don"], $data["ville"], $data["type"], $data["quantite"], $achatSource, $typeDistribution ]);
     }
+
+    public function deleteDonDirectDistributions() {
+        $query = "DELETE FROM bngrc_distribution WHERE type_distribution = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([ 'don_direct' ]);
+    }
 }

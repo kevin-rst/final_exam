@@ -65,4 +65,15 @@ class DonModel {
         }
         return 0;
     }
+
+    public function resetUtiliseForNonAchats() {
+        $query = "UPDATE bngrc_don d
+            LEFT JOIN bngrc_achat_don ad ON ad.id_don = d.id_don
+            SET d.est_utilise = 0
+            WHERE d.id_achat_source IS NULL
+            AND ad.id_don IS NULL";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+    }
 }

@@ -53,5 +53,6 @@ $router->group('', function(Router $router) use ($app) {
 	});
 
 	$router->get('/ville/details', [VilleController::class, 'getVilleDetails']);
+	$router->post('/ville/reset', [VilleController::class, 'resetSimulation']);
 
 }, [ SecurityHeadersMiddleware::class ]);

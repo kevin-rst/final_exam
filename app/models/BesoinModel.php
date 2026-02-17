@@ -61,6 +61,22 @@ class BesoinModel {
         $stmt->execute([ $quantite_restante, $id_besoin ]);
     }
 
+    public function resetQuantiteRestanteFromAchats() {
+        $query = "UPDATE bngrc_besoin b
+            LEFT JOIN (
+                SELECT a.id_besoin, COALESCE(SUM(d.quantite), 0) AS quantite_achat
+                FROM bngrc_achat a
+                LEFT JOIN bngrc_distribution d
+                    ON d.id_achat_source = a.id_achat
+                    AND d.type_distribution = 'achat'
+                GROUP BY a.id_besoin
+            ) AS x ON x.id_besoin = b.id_besoin
+            SET b.quantite_restante = b.quantite - COALESCE(x.quantite_achat, 0)";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+    }
+
     public function getBesoinDetails() {
         $query = "SELECT * FROM v_besoin_details WHERE quantite_restante > 0 ORDER BY date_saisie, id_besoin";
 

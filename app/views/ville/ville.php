@@ -10,7 +10,12 @@
     <div class="page-container">
         <div class="page-header">
             <h1 class="page-title">Details des villes</h1>
-            <p class="page-subtitle">Suivez les besoins et les dons attribues par ville.</p>
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <p class="page-subtitle">Suivez les besoins et les dons attribues par ville.</p>
+                <form action="<?= BASE_URL ?>/ville/reset" method="post">
+                    <button class="btn btn-outline btn-sm" type="submit">Reinitialiser</button>
+                </form>
+            </div>
         </div>
 
         <?php if ( isset($details) ) {
